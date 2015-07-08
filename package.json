@@ -23,10 +23,13 @@
     "tiny": "0.0.10"
   },
   "devDependencies": {
+    "async": "1.2.1",
+    "benchmark": "1.0.0",
+    "bitcore": "^0.12.12",
+    "chai": "3.0.0",
     "mocha": "~1.16.2",
     "optimist": "0.6.0",
     "rimraf": "2.2.8",
-    "async": "1.2.1",
-    "benchmark": "1.0.0"
+    "sinon": "^1.15.4"
   }
 }
