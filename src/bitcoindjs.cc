@@ -137,6 +137,43 @@ struct async_tx_data {
   Eternal<Function> callback;
 };
 
+/**
+ * Verify Scripts
+ */
+NAN_METHOD(VerifyScript) {
+  NanScope();
+
+  if (!node::Buffer::HasInstance(args[0])) {
+    return NanThrowTypeError("First argument should be a Buffer.");
+  }
+
+  if (!node::Buffer::HasInstance(args[1])) {
+    return NanThrowTypeError("Second argument should be a Buffer.");
+  }
+
+  unsigned char *scriptPubKey = (unsigned char *) node::Buffer::Data(args[0]);
+  unsigned int scriptPubKeyLen = (unsigned int) node::Buffer::Length(args[0]);
+
+  const unsigned char *txTo = (unsigned char *) node::Buffer::Data(args[1]);
+  unsigned int txToLen = (unsigned int)node::Buffer::Length(args[1]);
+
+  unsigned int nIn = args[2]->NumberValue();
+  unsigned int flags = args[3]->NumberValue();
+
+  bitcoinconsensus_error* err;
+  err = 0;
+
+  int valid = bitcoinconsensus_verify_script(scriptPubKey, scriptPubKeyLen, txTo, txToLen, nIn, flags, err);
+
+  if (!valid && err) {
+    NanThrowError("The transaction was not valid");
+  }
+
+  NanReturnValue(NanNew<Number>(valid));
+
+}
+
+
 
 /**
  * Helpers
@@ -981,6 +1018,7 @@ init(Handle<Object> target) {
   NODE_SET_METHOD(target, "getTransaction", GetTransaction);
   NODE_SET_METHOD(target, "getInfo", GetInfo);
   NODE_SET_METHOD(target, "isSpent", IsSpent);
+  NODE_SET_METHOD(target, "verifyScript", VerifyScript);
 
 }
 

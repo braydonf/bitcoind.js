@@ -18,6 +18,7 @@
 #include <boost/filesystem.hpp>
 #include "nan.h"
 #include "scheduler.h"
+#include "script/bitcoinconsensus.h"
 
 NAN_METHOD(StartBitcoind);
 NAN_METHOD(OnBlocksReady);
@@ -28,3 +29,4 @@ NAN_METHOD(GetBlock);
 NAN_METHOD(GetTransaction);
 NAN_METHOD(GetInfo);
 NAN_METHOD(IsSpent);
+NAN_METHOD(VerifyScript);
