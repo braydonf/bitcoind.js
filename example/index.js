@@ -13,7 +13,7 @@ process.title = 'bitcoind.js';
  */
 
 var bitcoind = require('../')({
-  directory: process.env.BITCOINDJS_DIR || '~/.bitcoin'
+  datadir: process.env.BITCOINDJS_DIR || '~/.bitcoin'
 });
 
 bitcoind.on('error', function(err) {

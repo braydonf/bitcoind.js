@@ -11,7 +11,7 @@ process.title = 'bitcoind.js';
  */
 
 var bitcoind = require('../index.js')({
-  directory: '~/.bitcoin'
+  datadir: '~/.bitcoin'
 });
 
 bitcoind.on('error', function(err) {

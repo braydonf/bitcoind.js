@@ -27,8 +27,8 @@ var fixtureData = {
 };
 
 var bitcoind = require('../')({
-  directory: '~/.bitcoin',
-  testnet: true
+  datadir: '~/.bitcoin',
+  network: 'testnet'
 });
 
 bitcoind.on('error', function(err) {

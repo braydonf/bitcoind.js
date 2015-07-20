@@ -23,7 +23,7 @@ describe('Basic Functionality', function() {
   before(function(done) {
     this.timeout(30000);
     bitcoind = require('../')({
-      directory: process.env.BITCOINDJS_DIR || '~/.bitcoin',
+      directory: process.env.BITCOINDJS_DIR || '~/.bitcoin'
     });
 
     bitcoind.on('error', function(err) {
